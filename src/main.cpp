@@ -8,15 +8,12 @@
 #define LED_GREEN   A1
 #define LED_BLUE    A2
 
+#define INC_STEP    255
+
 // RS, E, DB4, DB5, DB6, DB7
 LiquidCrystal lcd(4, 5, 9, 10, 11, 12);
 
-//int c_red     = 250;
-//int c_green   = 175;
-//int c_blue    = 100;
-
 int rgb[3] = {0, 0, 0};
-
 int selected_color_index = 0;
 
 
@@ -89,7 +86,7 @@ void loop() {
     if(! digitalRead(SWITCH_BUTTON)) selected_color_index++; // switch color index
 
     if(! digitalRead(INC_BUTTON)){
-        rgb[selected_color_index] += 255; // increase color value
+        rgb[selected_color_index] += INC_STEP; // increase color value
 
         if(rgb[selected_color_index] > 255) rgb[selected_color_index] = 0; // reset to 0 if color value is more then 255
     }
